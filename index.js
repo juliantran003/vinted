@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const formidable = require("express-formidable");
@@ -9,8 +10,7 @@ app.use(userRoutes);
 
 const offerRoutes = require("./routes/offer");
 app.use(offerRoutes);
-
-mongoose.connect("mongodb://localhost/vinted", {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -21,6 +21,6 @@ app.all("*", (req, res) => {
   res.status(404).json("Page not found");
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server started");
 });
