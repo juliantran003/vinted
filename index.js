@@ -3,7 +3,15 @@ const express = require("express");
 const app = express();
 const formidable = require("express-formidable");
 app.use(formidable());
+const cors = require("cors");
+app.use(cors());
 const mongoose = require("mongoose");
+const cloudinary = require("cloudinary").v2;
+cloudinary.config({
+  cloud_name: "juliantran",
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const userRoutes = require("./routes/user");
 app.use(userRoutes);
@@ -18,7 +26,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 app.all("*", (req, res) => {
   console.log("app.all");
-  res.status(404).json("Page no found");
+  res.status(404).json("Page not found");
 });
 
 app.listen(process.env.PORT, () => {

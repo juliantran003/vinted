@@ -3,13 +3,8 @@ const router = express.Router();
 const User = require("../models/User");
 const Offer = require("../models/Offer");
 const isAuthenticated = require("../middlewares/isAuthenticated");
-const cloudinary = require("cloudinary").v2;
+
 const mongoose = require("mongoose");
-cloudinary.config({
-  cloud_name: "juliantran",
-  api_key: "334881121824659",
-  api_secret: "gxeiY7HHKBPZCmf_8tCA32qP2rk",
-});
 
 router.post("/offer/publish", isAuthenticated, async (req, res) => {
   console.log("route : /offer/publish");
