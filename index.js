@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 app.all("*", (req, res) => {
   console.log("app.all");
-  res.status(404).json("Page not found");
+  res.status(404).json("Page no found");
 });
 
 app.listen(process.env.PORT, () => {
